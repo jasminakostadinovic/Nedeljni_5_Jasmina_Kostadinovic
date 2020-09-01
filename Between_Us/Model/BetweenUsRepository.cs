@@ -25,5 +25,22 @@ namespace Between_Us.Model
                 return 0;
             }
         }
+
+        internal bool TryAddNewUser(tblUser user)
+        {
+            try
+            {
+                using (var conn = new BetweenUsEntities())
+                {
+                    conn.tblUsers.Add(user);
+                    conn.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

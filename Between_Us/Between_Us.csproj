@@ -95,6 +95,7 @@
       <DependentUpon>BetweenUsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Login\LoginViewModel.cs" />
+    <Compile Include="ViewModel\Registration\RegistrationViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\WarningViewModel.cs" />
     <Compile Include="View\Registration\RegistrationView.xaml.cs">

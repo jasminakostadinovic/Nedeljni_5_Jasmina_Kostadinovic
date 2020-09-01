@@ -30,5 +30,19 @@ namespace Between_Us.Model
                 return false;
             }
         }
+        public bool IsUniqueUsername(string username)
+        {
+            try
+            {
+                using (var conn = new BetweenUsEntities())
+                {
+                    return !conn.tblUsers.Any(x => x.Username == username);
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }
