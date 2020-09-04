@@ -85,6 +85,9 @@
     <Compile Include="Model\tblFriend.cs">
       <DependentUpon>BetweenUsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\tblFriendRequest.cs">
+      <DependentUpon>BetweenUsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\tblPost.cs">
       <DependentUpon>BetweenUsModel.tt</DependentUpon>
     </Compile>
@@ -96,10 +99,15 @@
     </Compile>
     <Compile Include="ViewModel\Login\LoginViewModel.cs" />
     <Compile Include="ViewModel\Registration\RegistrationViewModel.cs" />
+    <Compile Include="ViewModel\User\FindFriendsViewModel.cs" />
+    <Compile Include="ViewModel\User\UserViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\WarningViewModel.cs" />
     <Compile Include="View\Registration\RegistrationView.xaml.cs">
       <DependentUpon>RegistrationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\FindFriendsView.xaml.cs">
+      <DependentUpon>FindFriendsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\User\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
@@ -120,6 +128,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Registration\RegistrationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\User\FindFriendsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,13 +179,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\User\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Model\BetweenUsModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BetweenUsModel.Context.cs</LastGenOutput>
       <DependentUpon>BetweenUsModel.edmx</DependentUpon>
+      <LastGenOutput>BetweenUsModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\BetweenUsModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

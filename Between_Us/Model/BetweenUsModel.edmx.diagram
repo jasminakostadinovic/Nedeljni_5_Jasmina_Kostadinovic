@@ -4,16 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="db3d276514bd42f1a922833f66890dd9" Name="Diagram1">
-        <EntityTypeShape EntityType="BetweenUsModel.tblFriend" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BetweenUsModel.tblPost" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BetweenUsModel.tblPostLiker" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BetweenUsModel.tblUser" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
-        <AssociationConnector Association="BetweenUsModel.FK__tblFriend__UserI__6383C8BA" ManuallyRouted="false" />
-        <AssociationConnector Association="BetweenUsModel.FK__tblFriend__UserI__6477ECF3" ManuallyRouted="false" />
-        <AssociationConnector Association="BetweenUsModel.FK__tblPost__UserID__6754599E" ManuallyRouted="false" />
-        <AssociationConnector Association="BetweenUsModel.FK__tblPostLi__PostI__6B24EA82" ManuallyRouted="false" />
-        <AssociationConnector Association="BetweenUsModel.FK__tblPostLi__UserI__6A30C649" ManuallyRouted="false" />
+      <Diagram DiagramId="a4476c51f46444e3b74a0e698c5d4476" Name="Diagram1">
+        <EntityTypeShape EntityType="BetweenUsModel.tblFriendRequest" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BetweenUsModel.tblFriend" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BetweenUsModel.tblPost" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BetweenUsModel.tblPostLiker" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BetweenUsModel.tblUser" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="BetweenUsModel.FK__tblFriend__UserI__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="BetweenUsModel.FK__tblFriend__UserI__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="BetweenUsModel.FK__tblFriend__UserI__07C12930" ManuallyRouted="false" />
+        <AssociationConnector Association="BetweenUsModel.FK__tblFriend__UserI__08B54D69" ManuallyRouted="false" />
+        <AssociationConnector Association="BetweenUsModel.FK__tblPost__UserID__0B91BA14" ManuallyRouted="false" />
+        <AssociationConnector Association="BetweenUsModel.FK__tblPostLi__PostI__0F624AF8" ManuallyRouted="false" />
+        <AssociationConnector Association="BetweenUsModel.FK__tblPostLi__UserI__0E6E26BF" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

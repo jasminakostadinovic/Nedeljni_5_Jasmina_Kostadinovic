@@ -63,7 +63,7 @@ namespace Between_Us.ViewModel.Login
                 int userDataId = db.GetUserDataId(userName);
                 if (userDataId != 0)
                 {
-                    UserView userView = new UserView();
+                    UserView userView = new UserView(db.LoadUser(userDataId));
                     loginView.Close();
                     userView.Show();
                     return;                   

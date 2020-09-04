@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="BetweenUsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblFriendRequests">
+          <Key>
+            <PropertyRef Name="FriendRequestID" />
+          </Key>
+          <Property Name="FriendRequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserID2" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblFriends">
           <Key>
             <PropertyRef Name="FriendsID" />
@@ -43,7 +51,31 @@
           <Property Name="Password" Type="char" MaxLength="1000" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__tblFriend__UserI__6383C8BA">
+        <Association Name="FK__tblFriend__UserI__03F0984C">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblFriendRequests" Type="Self.tblFriendRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblFriendRequests">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblFriend__UserI__04E4BC85">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblFriendRequests" Type="Self.tblFriendRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblFriendRequests">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblFriend__UserI__07C12930">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblFriends" Type="Self.tblFriends" Multiplicity="*" />
           <ReferentialConstraint>
@@ -55,7 +87,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblFriend__UserI__6477ECF3">
+        <Association Name="FK__tblFriend__UserI__08B54D69">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblFriends" Type="Self.tblFriends" Multiplicity="*" />
           <ReferentialConstraint>
@@ -67,7 +99,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPost__UserID__6754599E">
+        <Association Name="FK__tblPost__UserID__0B91BA14">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblPost" Type="Self.tblPost" Multiplicity="*" />
           <ReferentialConstraint>
@@ -79,7 +111,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPostLi__PostI__6B24EA82">
+        <Association Name="FK__tblPostLi__PostI__0F624AF8">
           <End Role="tblPost" Type="Self.tblPost" Multiplicity="1" />
           <End Role="tblPostLiker" Type="Self.tblPostLiker" Multiplicity="*" />
           <ReferentialConstraint>
@@ -91,7 +123,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPostLi__UserI__6A30C649">
+        <Association Name="FK__tblPostLi__UserI__0E6E26BF">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblPostLiker" Type="Self.tblPostLiker" Multiplicity="*" />
           <ReferentialConstraint>
@@ -104,27 +136,36 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BetweenUsModelStoreContainer">
+          <EntitySet Name="tblFriendRequests" EntityType="Self.tblFriendRequests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblFriends" EntityType="Self.tblFriends" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPost" EntityType="Self.tblPost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPostLiker" EntityType="Self.tblPostLiker" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__tblFriend__UserI__6383C8BA" Association="Self.FK__tblFriend__UserI__6383C8BA">
+          <AssociationSet Name="FK__tblFriend__UserI__03F0984C" Association="Self.FK__tblFriend__UserI__03F0984C">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblFriendRequests" EntitySet="tblFriendRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblFriend__UserI__04E4BC85" Association="Self.FK__tblFriend__UserI__04E4BC85">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblFriendRequests" EntitySet="tblFriendRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblFriend__UserI__07C12930" Association="Self.FK__tblFriend__UserI__07C12930">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblFriends" EntitySet="tblFriends" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblFriend__UserI__6477ECF3" Association="Self.FK__tblFriend__UserI__6477ECF3">
+          <AssociationSet Name="FK__tblFriend__UserI__08B54D69" Association="Self.FK__tblFriend__UserI__08B54D69">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblFriends" EntitySet="tblFriends" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPost__UserID__6754599E" Association="Self.FK__tblPost__UserID__6754599E">
+          <AssociationSet Name="FK__tblPost__UserID__0B91BA14" Association="Self.FK__tblPost__UserID__0B91BA14">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblPost" EntitySet="tblPost" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPostLi__PostI__6B24EA82" Association="Self.FK__tblPostLi__PostI__6B24EA82">
+          <AssociationSet Name="FK__tblPostLi__PostI__0F624AF8" Association="Self.FK__tblPostLi__PostI__0F624AF8">
             <End Role="tblPost" EntitySet="tblPost" />
             <End Role="tblPostLiker" EntitySet="tblPostLiker" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPostLi__UserI__6A30C649" Association="Self.FK__tblPostLi__UserI__6A30C649">
+          <AssociationSet Name="FK__tblPostLi__UserI__0E6E26BF" Association="Self.FK__tblPostLi__UserI__0E6E26BF">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblPostLiker" EntitySet="tblPostLiker" />
           </AssociationSet>
@@ -134,6 +175,16 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BetweenUsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblFriendRequest">
+          <Key>
+            <PropertyRef Name="FriendRequestID" />
+          </Key>
+          <Property Name="FriendRequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserID2" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblFriend__UserI__03F0984C" FromRole="tblFriendRequests" ToRole="tblUser" />
+          <NavigationProperty Name="tblUser1" Relationship="Self.FK__tblFriend__UserI__04E4BC85" FromRole="tblFriendRequests" ToRole="tblUser" />
+        </EntityType>
         <EntityType Name="tblFriend">
           <Key>
             <PropertyRef Name="FriendsID" />
@@ -141,8 +192,8 @@
           <Property Name="FriendsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="UserID2" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblFriend__UserI__6383C8BA" FromRole="tblFriends" ToRole="tblUser" />
-          <NavigationProperty Name="tblUser1" Relationship="Self.FK__tblFriend__UserI__6477ECF3" FromRole="tblFriends" ToRole="tblUser" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblFriend__UserI__07C12930" FromRole="tblFriends" ToRole="tblUser" />
+          <NavigationProperty Name="tblUser1" Relationship="Self.FK__tblFriend__UserI__08B54D69" FromRole="tblFriends" ToRole="tblUser" />
         </EntityType>
         <EntityType Name="tblPost">
           <Key>
@@ -152,8 +203,8 @@
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="LikesCount" Type="Int32" Nullable="false" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblPost__UserID__6754599E" FromRole="tblPost" ToRole="tblUser" />
-          <NavigationProperty Name="tblPostLikers" Relationship="Self.FK__tblPostLi__PostI__6B24EA82" FromRole="tblPost" ToRole="tblPostLiker" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblPost__UserID__0B91BA14" FromRole="tblPost" ToRole="tblUser" />
+          <NavigationProperty Name="tblPostLikers" Relationship="Self.FK__tblPostLi__PostI__0F624AF8" FromRole="tblPost" ToRole="tblPostLiker" />
         </EntityType>
         <EntityType Name="tblPostLiker">
           <Key>
@@ -162,8 +213,8 @@
           <Property Name="PostLikerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="PostID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblPost" Relationship="Self.FK__tblPostLi__PostI__6B24EA82" FromRole="tblPostLiker" ToRole="tblPost" />
-          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblPostLi__UserI__6A30C649" FromRole="tblPostLiker" ToRole="tblUser" />
+          <NavigationProperty Name="tblPost" Relationship="Self.FK__tblPostLi__PostI__0F624AF8" FromRole="tblPostLiker" ToRole="tblPost" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblPostLi__UserI__0E6E26BF" FromRole="tblPostLiker" ToRole="tblUser" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -177,12 +228,38 @@
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="1000" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tblFriends" Relationship="Self.FK__tblFriend__UserI__6383C8BA" FromRole="tblUser" ToRole="tblFriends" />
-          <NavigationProperty Name="tblFriends1" Relationship="Self.FK__tblFriend__UserI__6477ECF3" FromRole="tblUser" ToRole="tblFriends" />
-          <NavigationProperty Name="tblPosts" Relationship="Self.FK__tblPost__UserID__6754599E" FromRole="tblUser" ToRole="tblPost" />
-          <NavigationProperty Name="tblPostLikers" Relationship="Self.FK__tblPostLi__UserI__6A30C649" FromRole="tblUser" ToRole="tblPostLiker" />
+          <NavigationProperty Name="tblFriendRequests" Relationship="Self.FK__tblFriend__UserI__03F0984C" FromRole="tblUser" ToRole="tblFriendRequests" />
+          <NavigationProperty Name="tblFriendRequests1" Relationship="Self.FK__tblFriend__UserI__04E4BC85" FromRole="tblUser" ToRole="tblFriendRequests" />
+          <NavigationProperty Name="tblFriends" Relationship="Self.FK__tblFriend__UserI__07C12930" FromRole="tblUser" ToRole="tblFriends" />
+          <NavigationProperty Name="tblFriends1" Relationship="Self.FK__tblFriend__UserI__08B54D69" FromRole="tblUser" ToRole="tblFriends" />
+          <NavigationProperty Name="tblPosts" Relationship="Self.FK__tblPost__UserID__0B91BA14" FromRole="tblUser" ToRole="tblPost" />
+          <NavigationProperty Name="tblPostLikers" Relationship="Self.FK__tblPostLi__UserI__0E6E26BF" FromRole="tblUser" ToRole="tblPostLiker" />
         </EntityType>
-        <Association Name="FK__tblFriend__UserI__6383C8BA">
+        <Association Name="FK__tblFriend__UserI__03F0984C">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblFriendRequests" Type="Self.tblFriendRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblFriendRequests">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblFriend__UserI__04E4BC85">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblFriendRequests" Type="Self.tblFriendRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblFriendRequests">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblFriend__UserI__07C12930">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblFriends" Type="Self.tblFriend" Multiplicity="*" />
           <ReferentialConstraint>
@@ -194,7 +271,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblFriend__UserI__6477ECF3">
+        <Association Name="FK__tblFriend__UserI__08B54D69">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblFriends" Type="Self.tblFriend" Multiplicity="*" />
           <ReferentialConstraint>
@@ -206,7 +283,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPost__UserID__6754599E">
+        <Association Name="FK__tblPost__UserID__0B91BA14">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblPost" Type="Self.tblPost" Multiplicity="*" />
           <ReferentialConstraint>
@@ -218,7 +295,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPostLi__PostI__6B24EA82">
+        <Association Name="FK__tblPostLi__PostI__0F624AF8">
           <End Role="tblPost" Type="Self.tblPost" Multiplicity="1" />
           <End Role="tblPostLiker" Type="Self.tblPostLiker" Multiplicity="*" />
           <ReferentialConstraint>
@@ -230,7 +307,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPostLi__UserI__6A30C649">
+        <Association Name="FK__tblPostLi__UserI__0E6E26BF">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblPostLiker" Type="Self.tblPostLiker" Multiplicity="*" />
           <ReferentialConstraint>
@@ -243,27 +320,36 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BetweenUsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblFriendRequests" EntityType="Self.tblFriendRequest" />
           <EntitySet Name="tblFriends" EntityType="Self.tblFriend" />
           <EntitySet Name="tblPosts" EntityType="Self.tblPost" />
           <EntitySet Name="tblPostLikers" EntityType="Self.tblPostLiker" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
-          <AssociationSet Name="FK__tblFriend__UserI__6383C8BA" Association="Self.FK__tblFriend__UserI__6383C8BA">
+          <AssociationSet Name="FK__tblFriend__UserI__03F0984C" Association="Self.FK__tblFriend__UserI__03F0984C">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblFriendRequests" EntitySet="tblFriendRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblFriend__UserI__04E4BC85" Association="Self.FK__tblFriend__UserI__04E4BC85">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblFriendRequests" EntitySet="tblFriendRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblFriend__UserI__07C12930" Association="Self.FK__tblFriend__UserI__07C12930">
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblFriends" EntitySet="tblFriends" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblFriend__UserI__6477ECF3" Association="Self.FK__tblFriend__UserI__6477ECF3">
+          <AssociationSet Name="FK__tblFriend__UserI__08B54D69" Association="Self.FK__tblFriend__UserI__08B54D69">
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblFriends" EntitySet="tblFriends" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPost__UserID__6754599E" Association="Self.FK__tblPost__UserID__6754599E">
+          <AssociationSet Name="FK__tblPost__UserID__0B91BA14" Association="Self.FK__tblPost__UserID__0B91BA14">
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblPost" EntitySet="tblPosts" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPostLi__PostI__6B24EA82" Association="Self.FK__tblPostLi__PostI__6B24EA82">
+          <AssociationSet Name="FK__tblPostLi__PostI__0F624AF8" Association="Self.FK__tblPostLi__PostI__0F624AF8">
             <End Role="tblPost" EntitySet="tblPosts" />
             <End Role="tblPostLiker" EntitySet="tblPostLikers" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPostLi__UserI__6A30C649" Association="Self.FK__tblPostLi__UserI__6A30C649">
+          <AssociationSet Name="FK__tblPostLi__UserI__0E6E26BF" Association="Self.FK__tblPostLi__UserI__0E6E26BF">
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblPostLiker" EntitySet="tblPostLikers" />
           </AssociationSet>
@@ -274,6 +360,15 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BetweenUsModelStoreContainer" CdmEntityContainer="BetweenUsEntities">
+          <EntitySetMapping Name="tblFriendRequests">
+            <EntityTypeMapping TypeName="BetweenUsModel.tblFriendRequest">
+              <MappingFragment StoreEntitySet="tblFriendRequests">
+                <ScalarProperty Name="FriendRequestID" ColumnName="FriendRequestID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserID2" ColumnName="UserID2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblFriends">
             <EntityTypeMapping TypeName="BetweenUsModel.tblFriend">
               <MappingFragment StoreEntitySet="tblFriends">

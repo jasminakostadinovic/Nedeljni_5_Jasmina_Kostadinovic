@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Between_Us.Model;
+using Between_Us.ViewModel.User;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Between_Us.View.User
 {
@@ -19,9 +10,19 @@ namespace Between_Us.View.User
     /// </summary>
     public partial class UserView : Window
     {
-        public UserView()
+        public UserView(tblUser user)
         {
             InitializeComponent();
+            this.DataContext = new UserViewModel(this, user);
+        }
+        private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            //hiding id columns
+            if (e.Column.Header.ToString() == "PostID"
+                 || e.Column.Header.ToString() == "UserID")
+            {
+                e.Column.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

@@ -17,6 +17,8 @@ namespace Between_Us.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblUser()
         {
+            this.tblFriendRequests = new HashSet<tblFriendRequest>();
+            this.tblFriendRequests1 = new HashSet<tblFriendRequest>();
             this.tblFriends = new HashSet<tblFriend>();
             this.tblFriends1 = new HashSet<tblFriend>();
             this.tblPosts = new HashSet<tblPost>();
@@ -32,6 +34,10 @@ namespace Between_Us.Model
         public string Password { get; set; }
         public string Email { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblFriendRequest> tblFriendRequests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblFriendRequest> tblFriendRequests1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblFriend> tblFriends { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

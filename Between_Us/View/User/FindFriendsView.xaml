@@ -1,9 +1,9 @@
-﻿<Window x:Class="Between_Us.View.User.UserView"
+﻿<Window x:Class="Between_Us.View.User.FindFriendsView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-   mc:Ignorable="d"
+     mc:Ignorable="d"
       Title="Manager" Background="#2e3137" Height="450" Width="850" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -16,25 +16,25 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="6"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="6"/>       
+            <RowDefinition Height="6"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="1" Grid.Row="3" Content="News Feed:" Padding="0" HorizontalAlignment="Left" Foreground="White"/>
+        <Label Grid.Column="1" Grid.Row="3" Content="Find Friends:" Padding="0" HorizontalAlignment="Left" Foreground="White"/>
 
         <DataGrid Grid.Column="1" Grid.Row="5" Name="HealtcareIstitutionGrid" AutoGenerateColumns="True" HorizontalAlignment="Center" 
                   IsReadOnly="True" Height="300" VerticalAlignment="Top" 
                   Width="790" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn"
-                  ItemsSource="{Binding Posts}" SelectedItem="{Binding Post}" SelectionMode="Single">
+                  ItemsSource="{Binding Users}" SelectedItem="{Binding User}" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTemplateColumn  Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Name="btnUpdate" Content="Update"  HorizontalAlignment="Left"
+                                <Button Name="btnUpdate" Content="Send Request"  HorizontalAlignment="Left"
                             Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
-                                              Path=DataContext.Like}"
+                                              Path=DataContext.AddUser}"
                             CommandParameter="{Binding}"/>
                             </StackPanel>
                         </DataTemplate>
@@ -42,21 +42,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-
-        <Button Grid.Column="1" Grid.Row="1" Content="Find friends" Name="btnFindFriends" HorizontalAlignment="Left" 
-                VerticalAlignment="Top" Width="auto"  
-                Command="{Binding FindFriends, UpdateSourceTrigger=PropertyChanged}"
-                Background="#545d6a" Foreground="White"/>
-
-        <Button Grid.Column="1" Grid.Row="1" Content="Update Password" Name="btnUpdatePassword" HorizontalAlignment="Center" 
-                VerticalAlignment="Top" Width="auto"  
-                Command="{Binding UpdatePassword, UpdateSourceTrigger=PropertyChanged}"
-                Background="#545d6a" Foreground="White"/>
-
-        <Button Grid.Column="1" Grid.Row="1" Content="Create Post" Name="btnCreatePost" HorizontalAlignment="Center" Margin="-400,0,0,0"
-                VerticalAlignment="Top" Width="auto"  
-                Command="{Binding CreatePost, UpdateSourceTrigger=PropertyChanged}"
-                Background="#545d6a" Foreground="White"/>
 
         <Button Grid.Column="1" Grid.Row="1" Content="Logout" Name="btnLogout" HorizontalAlignment="Right" 
                 VerticalAlignment="Top" Width="auto"  

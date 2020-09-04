@@ -25,6 +25,7 @@ namespace Between_Us.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<tblFriendRequest> tblFriendRequests { get; set; }
         public virtual DbSet<tblFriend> tblFriends { get; set; }
         public virtual DbSet<tblPost> tblPosts { get; set; }
         public virtual DbSet<tblPostLiker> tblPostLikers { get; set; }
