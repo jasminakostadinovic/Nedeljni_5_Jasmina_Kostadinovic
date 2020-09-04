@@ -80,17 +80,17 @@ namespace Between_Us.ViewModel.Login
         }
 
         //registrate
-        private ICommand registrateCommand;
-        public ICommand RegistrateCommand
+        private ICommand registerCommand;
+        public ICommand RegisterCommand
         {
             get
             {
-                if (registrateCommand == null)
+                if (registerCommand == null)
                 {
-                    registrateCommand = new RelayCommand(Register);
-                    return registrateCommand;
+                    registerCommand = new RelayCommand(Register);
+                    return registerCommand;
                 }
-                return registrateCommand;
+                return registerCommand;
             }
         }
 
