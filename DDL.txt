@@ -19,6 +19,10 @@ IF  EXISTS (SELECT * FROM sys.objects
 	DROP TABLE tblFriends;
 
 IF  EXISTS (SELECT * FROM sys.objects 
+	WHERE NAME = 'tblFriendRequests')
+	DROP TABLE tblFriendRequests;
+
+IF  EXISTS (SELECT * FROM sys.objects 
 	WHERE NAME = 'tblUser')
 	DROP TABLE tblUser;
 
@@ -33,6 +37,11 @@ CREATE TABLE tblUser
 	Username nvarchar(50)not null unique,
 	[Password] char(1000)not null,
 	Email nvarchar(50));
+
+CREATE TABLE tblFriendRequests
+	(FriendRequestID int primary key identity(1,1),
+	UserID int foreign key(UserID) references tblUser(UserID) not null,
+	UserID2 int foreign key(UserID) references tblUser(UserID) not null);
 
 	CREATE TABLE tblFriends
 	(FriendsID int primary key identity(1,1),
