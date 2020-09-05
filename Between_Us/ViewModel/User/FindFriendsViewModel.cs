@@ -17,6 +17,7 @@ namespace Between_Us.ViewModel.User
         private List<tblUser> users;
         private tblUser user;
         private int userId;
+        private List<tblFriendRequest> requests;
         #endregion
 
         #region Constructor
@@ -26,14 +27,25 @@ namespace Between_Us.ViewModel.User
             this.findFriendsView = findFriendsView;
             User = new tblUser();            
             Users = LoadUsers();
+            requests = LoadRequests();
         }
+
+      
         #endregion
 
-        #region Properies
+        #region Methods
         private List<tblUser> LoadUsers()
         {
             return db.LoadUsers(userId);
         }
+        private List<tblFriendRequest> LoadRequests()
+        {
+            return db.LoadAllRequests(userId);
+        }
+        #endregion
+
+        #region Properies
+
         public tblUser User
         {
             get
@@ -84,6 +96,7 @@ namespace Between_Us.ViewModel.User
                 {
                     MessageBox.Show($"You have sent a new friend request to the user {user.Username}");
                     Users = LoadUsers();
+                    requests = LoadRequests();
                 }
             }
             catch (Exception ex)
@@ -95,7 +108,8 @@ namespace Between_Us.ViewModel.User
         {
             if(User != null)
             {
-                if (User.tblFriendRequests.Any(x => x.UserID2 == userId))
+                if(requests.Any(x => x.UserID == User.UserID
+                || x.UserID2 == User.UserID))
                     return false;
                 return true;
             }

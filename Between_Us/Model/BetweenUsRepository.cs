@@ -59,6 +59,42 @@ namespace Between_Us.Model
             }
         }
 
+        internal List<tblFriendRequest> LoadAllRequests(int userId)
+        {
+            try
+            {
+                using (var conn = new BetweenUsEntities())
+                {
+                    if (conn.tblFriendRequests.Any())
+                        return conn.tblFriendRequests
+                            .Where(x => x.tblUser1.UserID == userId 
+                            || x.tblUser.UserID == userId).ToList();
+                    return new List<tblFriendRequest>();
+                }
+            }
+            catch (Exception)
+            {
+                return new List<tblFriendRequest>();
+            }
+        }
+
+        internal List<tblFriendRequest> LoadRequestsForUser(int userId)
+        {
+            try
+            {
+                using (var conn = new BetweenUsEntities())
+                {
+                    if (conn.tblFriendRequests.Any())
+                        return conn.tblFriendRequests.Where(x => x.tblUser1.UserID == userId).ToList();
+                    return new List<tblFriendRequest>();
+                }
+            }
+            catch (Exception)
+            {
+                return new List<tblFriendRequest>();
+            }
+        }
+
         internal List<tblPost> LoadPosts()
         {
             try
