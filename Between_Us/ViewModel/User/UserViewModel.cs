@@ -91,6 +91,38 @@ namespace Between_Us.ViewModel.User
         {
             return true;
         }
+
+        //SeeRequests
+
+        private ICommand seeRequests;
+        public ICommand SeeRequests
+        {
+            get
+            {
+                if (seeRequests == null)
+                {
+                    seeRequests = new RelayCommand(param => SeeRequestsExecute(), param => CanSeeRequests());
+                }
+                return seeRequests;
+            }
+        }
+
+        private void SeeRequestsExecute()
+        {
+            try
+            {
+                SeeRequestsView seeRequestsView = new SeeRequestsView(userId);
+                seeRequestsView.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private bool CanSeeRequests()
+        {
+            return true;
+        }
         #endregion
     }
 }

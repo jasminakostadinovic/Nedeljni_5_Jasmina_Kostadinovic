@@ -49,7 +49,10 @@ namespace Between_Us.Model
                 using (var conn = new BetweenUsEntities())
                 {
                     if (conn.tblUsers.Any())
-                        return conn.tblUsers.Where(x => x.UserID != userId).Include(y => y.tblFriendRequests).ToList();
+                        return conn.tblUsers
+                            .Where(x => x.UserID != userId)
+                            .Include(y => y.tblFriendRequests)
+                            .ToList();
                     return new List<tblUser>();
                 }
             }
@@ -85,13 +88,39 @@ namespace Between_Us.Model
                 using (var conn = new BetweenUsEntities())
                 {
                     if (conn.tblFriendRequests.Any())
-                        return conn.tblFriendRequests.Where(x => x.tblUser1.UserID == userId).ToList();
+                        return conn.tblFriendRequests                           
+                            .Include(y => y.tblUser)
+                            .Where(x => x.UserID2 == userId)
+                            .ToList();
                     return new List<tblFriendRequest>();
                 }
             }
             catch (Exception)
             {
                 return new List<tblFriendRequest>();
+            }
+        }
+
+        internal bool RemoveFriendRequest(int friendRequestID)
+        {
+            try
+            {
+                using (var conn = new BetweenUsEntities())
+                {
+                    var requestToRemove = conn.tblFriendRequests
+                        .FirstOrDefault(x => x.FriendRequestID == friendRequestID);
+                    if(requestToRemove != null)
+                    {
+                        conn.tblFriendRequests.Remove(requestToRemove);
+                        conn.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 

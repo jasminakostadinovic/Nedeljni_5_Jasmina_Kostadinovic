@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Model\BetweenUsRepository.cs" />
     <Compile Include="Model\BetweenUsValidation.cs" />
+    <Compile Include="Model\FriendRequest.cs" />
     <Compile Include="Model\tblFriend.cs">
       <DependentUpon>BetweenUsModel.tt</DependentUpon>
     </Compile>
@@ -100,6 +101,7 @@
     <Compile Include="ViewModel\Login\LoginViewModel.cs" />
     <Compile Include="ViewModel\Registration\RegistrationViewModel.cs" />
     <Compile Include="ViewModel\User\FindFriendsViewModel.cs" />
+    <Compile Include="ViewModel\User\SeeRequestsViewModel.cs" />
     <Compile Include="ViewModel\User\UserViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\WarningViewModel.cs" />
@@ -108,6 +110,9 @@
     </Compile>
     <Compile Include="View\User\FindFriendsView.xaml.cs">
       <DependentUpon>FindFriendsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\User\SeeRequestsView.xaml.cs">
+      <DependentUpon>SeeRequestsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\User\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
@@ -132,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\User\FindFriendsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\User\SeeRequestsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
