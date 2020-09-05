@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        mc:Ignorable="d"
-      Title="Manager" Background="#2e3137" Height="450" Width="850" WindowStartupLocation="CenterScreen">
+      Title="Manager" Background="#2e3137" Height="450" Width="600" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -25,7 +25,7 @@
 
         <DataGrid Grid.Column="1" Grid.Row="5" Name="HealtcareIstitutionGrid" AutoGenerateColumns="True" HorizontalAlignment="Center" 
                   IsReadOnly="True" Height="300" VerticalAlignment="Top" 
-                  Width="790" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn"
+                  Width="550" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn"
                   ItemsSource="{Binding Requests}" SelectedItem="{Binding Request}" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTemplateColumn  Width="auto">
@@ -46,11 +46,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-
-        <Button Grid.Column="1" Grid.Row="1" Content="Logout" Name="btnLogout" HorizontalAlignment="Right" 
-                VerticalAlignment="Top" Width="auto"  
-                Command="{Binding Logout, UpdateSourceTrigger=PropertyChanged}"
-                Background="#545d6a" Foreground="White"/>
     </Grid>
 </Window>
 

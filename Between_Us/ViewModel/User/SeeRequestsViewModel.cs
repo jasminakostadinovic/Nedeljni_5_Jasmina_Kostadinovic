@@ -3,7 +3,6 @@ using Between_Us.Model;
 using Between_Us.View.User;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -39,7 +38,6 @@ namespace Between_Us.ViewModel.User
         #endregion
 
         #region Properies
-
         public tblFriendRequest Request
         {
             get

@@ -50,9 +50,7 @@ namespace Between_Us.Model
                 {
                     if (conn.tblUsers.Any())
                         return conn.tblUsers
-                            .Where(x => x.UserID != userId 
-                            && !x.tblFriends.Any(u => u.UserID != userId || u.UserID2 != userId))
-                            .Include(y => y.tblFriends)
+                            .Where(x => x.UserID != userId)
                             .ToList();
                     return new List<tblUser>();
                 }
@@ -63,7 +61,26 @@ namespace Between_Us.Model
             }
         }
 
-        internal List<tblFriendRequest> LoadAllRequests(int userId)
+        internal List<tblFriend> LoadUserFriends(int userId)
+        {
+            try
+            {
+                using (var conn = new BetweenUsEntities())
+                {
+                    if (conn.tblFriends.Any())
+                        return conn.tblFriends
+                            .Where(x => x.UserID == userId
+                            || x.UserID2 == userId).ToList();
+                    return new List<tblFriend>();
+                }
+            }
+            catch (Exception)
+            {
+                return new List<tblFriend>();
+            }
+        }
+
+        internal List<tblFriendRequest> LoadUserRequests(int userId)
         {
             try
             {

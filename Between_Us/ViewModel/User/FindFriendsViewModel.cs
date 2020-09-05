@@ -18,6 +18,7 @@ namespace Between_Us.ViewModel.User
         private tblUser user;
         private int userId;
         private List<tblFriendRequest> requests;
+        private List<tblFriend> friends;
         #endregion
 
         #region Constructor
@@ -26,21 +27,34 @@ namespace Between_Us.ViewModel.User
             this.userId = userId;
             this.findFriendsView = findFriendsView;
             User = new tblUser();            
-            Users = LoadUsers();
+          
             requests = LoadRequests();
+            friends = LoadFriends();
+            Users = LoadUsers();
         }
 
-      
         #endregion
 
         #region Methods
         private List<tblUser> LoadUsers()
         {
-            return db.LoadUsers(userId);
+            var newUsers = new List<tblUser>();
+            var allUsers = db.LoadUsers(userId);
+            for (int i = 0; i < allUsers.Count; i++)
+            {
+                if (!friends.Any(x => x.UserID == allUsers[i].UserID
+                 || x.UserID == allUsers[i].UserID))
+                    newUsers.Add(allUsers[i]);               
+            }
+            return newUsers;
         }
         private List<tblFriendRequest> LoadRequests()
         {
-            return db.LoadAllRequests(userId);
+            return db.LoadUserRequests(userId);
+        }
+        private List<tblFriend> LoadFriends()
+        {
+            return db.LoadUserFriends(userId);
         }
         #endregion
 

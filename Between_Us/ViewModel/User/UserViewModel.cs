@@ -80,7 +80,7 @@ namespace Between_Us.ViewModel.User
             try
             {
                 FindFriendsView findFriendsView = new FindFriendsView(userId);
-                findFriendsView.ShowDialog();  
+                findFriendsView.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -113,6 +113,7 @@ namespace Between_Us.ViewModel.User
             {
                 SeeRequestsView seeRequestsView = new SeeRequestsView(userId);
                 seeRequestsView.ShowDialog();
+              
             }
             catch (Exception ex)
             {
@@ -122,6 +123,33 @@ namespace Between_Us.ViewModel.User
         private bool CanSeeRequests()
         {
             return true;
+        }
+
+        //logout
+
+        private ICommand logout;
+        public ICommand Logout
+        {
+            get
+            {
+                if (logout == null)
+                {
+                    logout = new RelayCommand(param => ExitExecute(), param => CanExitExecute());
+                }
+                return logout;
+            }
+        }
+
+        protected bool CanExitExecute()
+        {
+            return true;
+        }
+
+        protected void ExitExecute()
+        {
+            MainWindow loginWindow = new MainWindow();
+            userView.Close();
+            loginWindow.Show();
         }
         #endregion
     }
