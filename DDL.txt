@@ -1,0 +1,61 @@
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE NAME = 'BetweenUs')
+	CREATE DATABASE BetweenUs;
+
+GO
+USE BetweenUs;
+
+--Droping tables
+
+IF  EXISTS (SELECT * FROM sys.objects 
+	WHERE NAME = 'tblPostLiker')
+	DROP TABLE tblPostLiker;
+
+IF  EXISTS (SELECT * FROM sys.objects 
+	WHERE NAME = 'tblPost')
+	DROP TABLE tblPost;
+
+IF  EXISTS (SELECT * FROM sys.objects 
+	WHERE NAME = 'tblFriends')
+	DROP TABLE tblFriends;
+
+IF  EXISTS (SELECT * FROM sys.objects 
+	WHERE NAME = 'tblFriendRequests')
+	DROP TABLE tblFriendRequests;
+
+IF  EXISTS (SELECT * FROM sys.objects 
+	WHERE NAME = 'tblUser')
+	DROP TABLE tblUser;
+
+	
+--Creating tables
+CREATE TABLE tblUser
+	(UserID int primary key identity(1,1),
+	GivenName nvarchar(50) not null,
+	Surname nvarchar(50) not null,
+	Sex nvarchar(50) not null,
+	DateOfBirth datetime not null,
+	Username nvarchar(50)not null unique,
+	[Password] char(1000)not null,
+	Email nvarchar(50));
+
+CREATE TABLE tblFriendRequests
+	(FriendRequestID int primary key identity(1,1),
+	UserID int foreign key(UserID) references tblUser(UserID) not null,
+	UserID2 int foreign key(UserID) references tblUser(UserID) not null);
+
+	CREATE TABLE tblFriends
+	(FriendsID int primary key identity(1,1),
+	UserID int foreign key(UserID) references tblUser(UserID) not null,
+	UserID2 int foreign key(UserID) references tblUser(UserID) not null);
+
+	CREATE TABLE tblPost
+	(PostID int primary key identity(1,1),
+	UserID int foreign key(UserID) references tblUser(UserID) not null,
+	[LikesCount] int not null,
+	DateCreated datetime not null);
+
+CREATE TABLE tblPostLiker
+	(PostLikerID int primary key identity(1,1),
+	UserID int foreign key(UserID) references tblUser(UserID) not null,
+	PostID int foreign key(PostID) references tblPost(PostID) not null);
+
