@@ -50,8 +50,9 @@ namespace Between_Us.Model
                 {
                     if (conn.tblUsers.Any())
                         return conn.tblUsers
-                            .Where(x => x.UserID != userId)
-                            .Include(y => y.tblFriendRequests)
+                            .Where(x => x.UserID != userId 
+                            && !x.tblFriends.Any(u => u.UserID != userId || u.UserID2 != userId))
+                            .Include(y => y.tblFriends)
                             .ToList();
                     return new List<tblUser>();
                 }
