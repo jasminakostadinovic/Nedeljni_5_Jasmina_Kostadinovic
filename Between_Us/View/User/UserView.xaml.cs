@@ -19,7 +19,9 @@ namespace Between_Us.View.User
         {
             //hiding id columns
             if (e.Column.Header.ToString() == "PostID"
-                 || e.Column.Header.ToString() == "UserID")
+                 || e.Column.Header.ToString() == "UserID"
+                  || e.Column.Header.ToString() == "tblUser"
+                   || e.Column.Header.ToString() == "tblPostLikers")
             {
                 e.Column.Visibility = Visibility.Collapsed;
             }

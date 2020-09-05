@@ -3,6 +3,8 @@ using Between_Us.Model;
 using Between_Us.View.User;
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -80,7 +82,7 @@ namespace Between_Us.ViewModel.User
             }
         }
 
-        private void AcceptExecute()
+        private  void AcceptExecute()
         {
             try
             {
@@ -89,7 +91,12 @@ namespace Between_Us.ViewModel.User
                 {
                     if (db.RemoveFriendRequest(Request.FriendRequestID))
                     {
-                        MessageBox.Show($"You are now friend with the user {friendName}");
+                        Task.Run(() =>
+                        {
+                            Thread.Sleep(1000);
+                            MessageBox.Show($"You are now friend with the user {friendName}");
+                        });
+                 
                         Requests = LoadRequests();
                     }                 
                 }
@@ -129,7 +136,12 @@ namespace Between_Us.ViewModel.User
 
                 if (db.RemoveFriendRequest(Request.FriendRequestID))
                 {
-                    MessageBox.Show($"You have deleted the friend request of the user {friendName}");
+                    Task.Run(() =>
+                    {
+                        Thread.Sleep(1000);
+                        MessageBox.Show($"You have deleted the friend request of the user {friendName}");
+                    });
+                
                     Requests = LoadRequests();
                 }
             }
